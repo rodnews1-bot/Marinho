@@ -5,9 +5,12 @@ import { asaasService } from '@/lib/asaas';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { getTermExplanation } from '@/lib/legalTermsDictionary';
+import { generateDocument } from '@/lib/generateDocument';
+import { initGoogleDriveApi, signInToGoogle, extractFolderId, listFilesInFolder, readDriveFileParams } from '@/lib/googleDriveApi';
 import { 
   ArrowLeft, User, MapPin, Phone, Mail, FileText, 
-  ExternalLink, Search, HelpCircle, RefreshCw, CreditCard
+  ExternalLink, Search, HelpCircle, RefreshCw, CreditCard,
+  Bot, Folder, FileSignature
 } from 'lucide-react';
 import {
   Tooltip,
@@ -27,6 +30,14 @@ const ClientDetailPage = () => {
   const [pasteData, setPasteData] = useState('');
   const [parsedUpdates, setParsedUpdates] = useState([]);
   const [syncing, setSyncing] = useState(false);
+  
+  // AI and Drive
+  const [informacoesCaso, setInformacoesCaso] = useState(null);
+  const [aiContext, setAiContext] = useState('');
+  const [aiDocumentType, setAiDocumentType] = useState('Petição Inicial');
+  const [generatedDocument, setGeneratedDocument] = useState('');
+  const [generatingDoc, setGeneratingDoc] = useState(false);
+  const [isScanningDrive, setIsScanningDrive] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +59,16 @@ const ClientDetailPage = () => {
           .eq('cliente_id', id);
           
         setProcesses(processData || []);
+
+        // Fetch Informações do Caso
+        const { data: infoData } = await supabase
+          .from('informacoes_caso')
+          .select('*')
+          .eq('cliente_id', id);
+          
+        if (infoData && infoData.length > 0) {
+          setInformacoesCaso(infoData[0]);
+        }
       }
       
       setLoading(false);
@@ -97,6 +118,73 @@ const ClientDetailPage = () => {
       toast({ variant: "destructive", title: "Erro na sincronização", description: error.message });
     }
     setSyncing(false);
+  };
+
+  const handleGenerateDocument = async () => {
+    if (!aiContext.trim()) {
+      toast({ variant: "destructive", title: "Contexto vazio", description: "Escreva os fatos ou detalhes do caso antes de gerar." });
+      return;
+    }
+    
+    setGeneratingDoc(true);
+    setGeneratedDocument('');
+    try {
+      const result = await generateDocument(aiContext, aiDocumentType, client.nome, client.cpf);
+      setGeneratedDocument(result);
+      toast({ title: "Documento Gerado", description: "A IA criou o documento com sucesso." });
+    } catch (error) {
+      toast({ variant: "destructive", title: "Erro na IA", description: error.message });
+    }
+    setGeneratingDoc(false);
+  };
+
+  const handleScanDrive = async () => {
+    if (!informacoesCaso?.documentos) {
+       toast({ variant: "destructive", title: "Sem Link", description: "O cliente não tem nenhuma pasta do Drive vinculada." });
+       return;
+    }
+
+    try {
+       setIsScanningDrive(true);
+       toast({ title: "Conectando ao Google...", description: "Autorize o acesso na janela que irá abrir." });
+       
+       const token = await signInToGoogle();
+       const folderId = extractFolderId(informacoesCaso.documentos);
+       
+       if (!folderId) {
+          throw new Error("Link do Drive inválido. Cole a URL completa de uma pasta válida.");
+       }
+
+       toast({ title: "Buscando Arquivos", description: "Listando PDFs e Documentos na pasta do cliente..." });
+       await initGoogleDriveApi(); // Certificar que API está pronta
+       const files = await listFilesInFolder(folderId, token);
+       
+       if (files.length === 0) {
+          throw new Error("A pasta está vazia ou não contém arquivos suportados (PDF/Docs/TXT).");
+       }
+
+       let combinedContent = `--- ARQUIVOS EXTRAÍDOS DA PASTA DO CLIENTE ---\n\n`;
+       toast({ title: "Lendo Textos", description: `Extraindo conteúdo de ${files.length} arquivos...` });
+       
+       for (const file of files) {
+          combinedContent += `\n>> ARQUIVO: ${file.name}\n`;
+          try {
+             const text = await readDriveFileParams(file.id, token, file.mimeType);
+             combinedContent += `${text && text.trim() ? text : "[Arquivo sem texto extraível ou formato bloqueado]"}\n`;
+          } catch (err) {
+             combinedContent += `[Erro ao ler conteúdo: ${err.message}]\n`;
+          }
+       }
+
+       setAiContext(combinedContent);
+       toast({ title: "Leitura Concluída!", description: "Os arquivos foram copiados para a Inteligência Artificial com sucesso." });
+
+    } catch (e) {
+       console.error("Erro no Drive:", e);
+       toast({ variant: "destructive", title: "Erro na Leitura do Drive", description: e.message });
+    } finally {
+       setIsScanningDrive(false);
+    }
   };
 
   if (loading) return <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white">Carregando detalhes...</div>;
@@ -153,6 +241,24 @@ const ClientDetailPage = () => {
               </div>
             </div>
           </div>
+          
+          {informacoesCaso?.documentos && (
+            <div className="mt-6 pt-6 border-t border-slate-800 flex items-center justify-between">
+              <div>
+                <h3 className="text-white font-medium flex items-center gap-2"><Folder className="w-4 h-4 text-blue-400" /> Pasta de Documentos</h3>
+                <p className="text-sm text-slate-400">Google Drive verificado para acesso automatizado.</p>
+              </div>
+              <div className="flex gap-2">
+                 <Button onClick={handleScanDrive} disabled={isScanningDrive} className="bg-purple-600 hover:bg-purple-700 text-white gap-2 border-0">
+                   {isScanningDrive ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Bot className="w-4 h-4" />}
+                   {isScanningDrive ? "Lendo Drive..." : "Escanear com IA"}
+                 </Button>
+                 <Button onClick={() => window.open(informacoesCaso.documentos, '_blank')} variant="outline" className="border-slate-700 text-slate-300 hover:text-white gap-2">
+                   <ExternalLink className="w-4 h-4" /> Acessar
+                 </Button>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

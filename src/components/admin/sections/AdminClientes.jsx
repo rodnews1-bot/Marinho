@@ -455,6 +455,16 @@ const AdminClientes = () => {
                                 <textarea className="w-full bg-slate-950 border border-slate-700 rounded p-2 text-sm text-white" rows={3} value={infoFormData.dados_relevantes} onChange={e => setInfoFormData({...infoFormData, dados_relevantes: e.target.value})} />
                               ) : <p className="text-sm text-slate-300 whitespace-pre-wrap">{infoFormData.dados_relevantes || 'Nenhuma informação registrada.'}</p>}
                            </div>
+                           <div className="pt-2 border-t border-slate-800/50">
+                              <label className="text-xs text-blue-400 font-bold block mb-1">Link Pasta Google Drive (Documentos)</label>
+                              {isEditingInfo ? (
+                                <input type="url" placeholder="https://drive.google.com/..." className="w-full bg-slate-950 border border-slate-700 rounded p-2 text-sm text-white" value={infoFormData.documentos} onChange={e => setInfoFormData({...infoFormData, documentos: e.target.value})} />
+                              ) : (
+                                infoFormData.documentos ? (
+                                  <a href={infoFormData.documentos} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-400 hover:text-blue-300 underline break-all">{infoFormData.documentos}</a>
+                                ) : <p className="text-sm text-slate-500 italic">Nenhum drive vinculado.</p>
+                              )}
+                           </div>
                         </div>
                      </div>
 

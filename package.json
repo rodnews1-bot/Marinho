@@ -8,7 +8,8 @@
     "build": "node tools/generate-llms.js || true && vite build",
     "preview": "vite preview --host :: --port 3000",
     "lint": "eslint . --quiet",
-    "eslint": "eslint src"
+    "eslint": "eslint src",
+    "deploy": "powershell -ExecutionPolicy Bypass -File .\\deploy.ps1"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.3.1",
@@ -28,6 +29,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
+    "gapi-script": "^1.2.0",
     "lucide-react": "^0.469.0",
     "openai": "^4.24.1",
     "pdfjs-dist": "^3.11.174",
