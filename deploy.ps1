@@ -18,7 +18,9 @@ if ($LASTEXITCODE -ne 0) {
     Write-Error "A cópia dos arquivos para o servidor falhou."
     exit 1
 }
-Write-Host "Arquivos copiados com sucesso!" -ForegroundColor Green
+Write-Host "Arquivos copiados com sucesso! Ajustando permissoes no servidor linux..." -ForegroundColor Yellow
+ssh root@72.60.247.50 "chmod -R 755 /var/www/marinho"
+Write-Host "Deploy de arquivos e permissoes finalizado!" -ForegroundColor Green
 
 if (-not $SkipGit) {
     Write-Host "3. Salvando as alteracoes no GitHub..." -ForegroundColor Yellow
