@@ -154,7 +154,7 @@ const Hero = () => {
                 }}
               />
               <img
-                src="https://horizons-cdn.hostinger.com/fc1a8f30-56b6-4386-b03a-0cb5e72f383b/92e0a9b8a5489e15c13385c84dabb369.png"
+                src="/logomarinho.png"
                 alt="Marinho Advocacia e Assessoria - Logo"
                 className="relative w-full h-auto rounded-full shadow-2xl transition-transform duration-500 group-hover:scale-105"
               />

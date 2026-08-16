@@ -23,7 +23,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center shrink-0 rounded-full overflow-hidden bg-slate-800">
                 <img
-                  src="https://horizons-cdn.hostinger.com/fc1a8f30-56b6-4386-b03a-0cb5e72f383b/9674c8b7bad991a70e53c712f93d8d7d.png"
+                  src="/logomarinho.png"
                   alt="Marinho Advocacia Logo"
                   className="w-full h-full object-contain"
                 />

@@ -36,7 +36,7 @@ const LandingPage = () => (
 function App() {
   const metaTitle = "MARINHO ADVOCACIA CRIMINAL | Advogado Criminalista - Atuação Nacional";
   const metaDesc = "Escritório 100% especializado em Direito Penal, com atuação em todo o território nacional. Defesa técnica em Homicídio, Estelionato, Golpes e Crimes Virtuais, Violência Doméstica, Tráfico de Entorpecentes e prisão em flagrante. Atendimento 24h.";
-  const metaImage = "https://horizons-cdn.hostinger.com/fc1a8f30-56b6-4386-b03a-0cb5e72f383b/96cf0b8bdd18b2092b65cbc915d1e49d.png";
+  const metaImage = "https://rodrigomarinho.com.br/logomarinho.png";
 
   return (
     <AdminProvider>

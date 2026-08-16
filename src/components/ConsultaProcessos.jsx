@@ -4,7 +4,7 @@ import { Search, Scale, Clock, FileText, Building, Loader2, Volume2, Pause, Chev
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-const API_BASE = 'https://direitando.com.br/api/sites/publico/chuva';
+const API_BASE = 'https://direitando.com.br/api/sites/publico/marinho';
 
 function formatarCPF(valor) {
     const n = valor.replace(/\D/g, '');
