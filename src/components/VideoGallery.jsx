@@ -25,15 +25,20 @@ const VideoGallery = () => {
 
     const fetchVideos = async () => {
       try {
-        const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=15&playlistId=${YOUTUBE_PLAYLIST_ID}&key=${YOUTUBE_API_KEY}`;
+        const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=${YOUTUBE_PLAYLIST_ID}&key=${YOUTUBE_API_KEY}`;
         const response = await fetch(url);
         if (!response.ok) throw new Error('Falha ao buscar vídeos do YouTube');
         const data = await response.json();
 
+        const seenIds = new Set();
         const parsed = (data.items || [])
           .filter((item) => {
             const title = item.snippet?.title;
-            return item.snippet?.resourceId?.videoId && title !== 'Private video' && title !== 'Deleted video';
+            const videoId = item.snippet?.resourceId?.videoId;
+            if (!videoId || title === 'Private video' || title === 'Deleted video') return false;
+            if (seenIds.has(videoId)) return false;
+            seenIds.add(videoId);
+            return true;
           })
           .map((item) => ({
             id: item.snippet.resourceId.videoId,
