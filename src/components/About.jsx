@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Gavel, Scale, HeartHandshake as Handshake, BookOpen } from 'lucide-react';
+import { Gavel, Scale, MapPinned, BookOpen } from 'lucide-react';
 
 const About = () => {
   return (
@@ -27,7 +27,7 @@ const About = () => {
             </span>
           </h2>
           <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto px-4">
-            Conheça o compromisso e a expertise por trás do Marinho Advocacia.
+            Conheça o compromisso e a expertise por trás do Marinho Advocacia, escritório 100% dedicado ao Direito Penal.
           </p>
         </motion.div>
 
@@ -93,12 +93,12 @@ const About = () => {
               </li>
               <li className="flex items-start gap-3 sm:gap-4">
                 <div className="bg-blue-500/10 p-2 sm:p-3 rounded-xl mt-1 shrink-0">
-                  <Handshake className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+                  <MapPinned className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
                 </div>
                 <div>
-                  <strong className="text-white text-base sm:text-lg block mb-1">Defesa do Cidadão e Consumidor</strong>
+                  <strong className="text-white text-base sm:text-lg block mb-1">Atendimento Urgente em Todo o Brasil</strong>
                   <span className="text-sm sm:text-base leading-relaxed block">
-                    Especialista na defesa contra instituições financeiras, cobranças abusivas e renegociação de dívidas. Foco em revisão de empréstimos consignados, protegendo seu patrimônio.
+                    Estrutura pronta para atuar em prisões em flagrante e audiências de custódia em qualquer estado, com atendimento inicial 24 horas por dia, 7 dias por semana.
                   </span>
                 </div>
               </li>

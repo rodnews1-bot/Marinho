@@ -57,7 +57,7 @@ const Footer = () => {
                 <Facebook className="w-5 h-5 text-slate-400 group-hover:text-white" />
               </a>
               <a
-                href="https://youtube.com/marinhoadvocacia.oficial"
+                href="https://youtube.com/@rodnews"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-slate-900 border border-slate-800 hover:bg-red-600 hover:border-transparent rounded-lg flex items-center justify-center transition-all duration-300 group"
@@ -85,6 +85,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="#videos" className="text-slate-400 hover:text-amber-400 transition-colors text-sm flex items-center gap-2">
+                  <span className="w-1 h-1 bg-slate-600 rounded-full"></span>
+                  Vídeos
+                </a>
+              </li>
+              <li>
                 <a href="#testimonials" className="text-slate-400 hover:text-amber-400 transition-colors text-sm flex items-center gap-2">
                   <span className="w-1 h-1 bg-slate-600 rounded-full"></span>
                   Depoimentos
@@ -96,18 +102,24 @@ const Footer = () => {
                   Agendar
                 </a>
               </li>
+              <li>
+                <a href="https://direitando.com.br/parceiro" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-amber-400 transition-colors text-sm flex items-center gap-2">
+                  <span className="w-1 h-1 bg-slate-600 rounded-full"></span>
+                  Parceiro
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Areas - Spans 1 col on mobile (right side of grid) */}
           <div className="col-span-1">
-            <span className="text-white font-bold mb-6 block border-l-4 border-blue-500 pl-3">Áreas</span>
+            <span className="text-white font-bold mb-6 block border-l-4 border-blue-500 pl-3">Crimes</span>
             <ul className="space-y-3">
-              <li className="text-slate-400 text-sm">Direito Penal</li>
-              <li className="text-slate-400 text-sm">Tributário</li>
-              <li className="text-slate-400 text-sm">Previdenciário</li>
-              <li className="text-slate-400 text-sm">Consumidor</li>
-              <li className="text-slate-400 text-sm">Dívidas</li>
+              <li className="text-slate-400 text-sm">Homicídio e Feminicídio</li>
+              <li className="text-slate-400 text-sm">Estelionato e Fraudes</li>
+              <li className="text-slate-400 text-sm">Crimes Virtuais</li>
+              <li className="text-slate-400 text-sm">Violência Doméstica</li>
+              <li className="text-slate-400 text-sm">Tráfico de Entorpecentes</li>
             </ul>
           </div>
 

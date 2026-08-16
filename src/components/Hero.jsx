@@ -63,23 +63,23 @@ const Hero = () => {
               className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-900/30 border border-blue-500/30 rounded-full mx-auto lg:mx-0"
             >
               <ShieldAlert className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
-              <span className="text-blue-200 text-xs sm:text-sm font-medium text-left">Não deixe para depois o que ameaça seu futuro</span>
+              <span className="text-blue-200 text-xs sm:text-sm font-medium text-left">Atendimento criminal 24h em todo o Brasil</span>
             </motion.div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-              Proteja sua Liberdade e seu{' '}
+              Proteja sua{' '}
               <span className="bg-gradient-to-r from-blue-400 to-amber-400 bg-clip-text text-transparent">
-                Patrimônio
+                Liberdade
               </span>
-              {' '}com Estratégia de Elite
+              {' '}com Defesa Criminal de Elite
             </h1>
 
             <div className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 space-y-2">
               <p>
-                Atuação especializada em <strong>Direito Penal, Tributário, Previdenciário, Consumidor</strong> e <strong>Renegociação de Dívidas</strong>.
+                Escritório <strong>100% especializado em Direito Penal</strong>, com atuação em <strong>todo o território nacional</strong>.
               </p>
               <p className="text-sm sm:text-base text-slate-400">
-                Também atendemos demandas de <strong>Multas/Apreensão, Direitos do Autista, Concursos Públicos</strong> e <strong>Consultoria Jurídica</strong>.
+                Homicídio, Tráfico de Drogas, Estelionato, Golpes e Crimes Virtuais, Violência Doméstica e demais crimes: defesa técnica desde a prisão em flagrante até o Tribunal do Júri.
               </p>
             </div>
 

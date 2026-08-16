@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Scale, ShieldCheck, DollarSign, Gavel, FileBarChart, HeartHandshake, MessageCircle, AlertTriangle, Car, ChevronDown, Shield, FileText, Wine, UserCheck, Armchair as Wheelchair, Heart, FileSearch, Users, Unlock, TrendingDown, Building2, Calculator, RefreshCcw, XCircle, FileCheck, Landmark, Divide, CalendarClock, TrendingUp, Activity, Accessibility, Briefcase, HeartCrack, UserX, Stethoscope, FileWarning, Undo2, Percent, HeartHandshake as Handshake, Banknote, ScrollText, AlertOctagon, ShieldAlert, BadgePercent, Lock, School, GraduationCap, Home, PlusCircle } from 'lucide-react';
+import { Scale, Gavel, MessageCircle, AlertTriangle, Car, ChevronDown, Shield, FileText, Wine, Users, Unlock, Activity, FileSearch, FileWarning, ScrollText, FileCheck, Banknote, CreditCard, Smartphone, HeartCrack, Pill, ShieldOff, Siren, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ProcessUploadModal from '@/components/ProcessUploadModal';
 import { getWhatsAppLink } from '@/lib/whatsappConfig';
 
 const Services = () => {
   const [expandedItem, setExpandedItem] = useState(null);
-  const [isProcessModalOpen, setIsProcessModalOpen] = useState(false);
 
   const handleWhatsApp = (message) => {
     window.open(getWhatsAppLink(message), '_blank');
@@ -19,18 +17,15 @@ const Services = () => {
 
   const services = [
     {
-      id: "penal",
+      id: "homicidio",
       icon: Gavel,
-      title: "Direito Penal",
-      description: "Defesa técnica e combativa. Protegemos sua liberdade em inquéritos e processos com estratégias que buscam a verdade real dos fatos.",
+      title: "Homicídio e Feminicídio",
+      description: "Defesa técnica de elite em crimes contra a vida. Atuação estratégica desde a investigação até o julgamento no Tribunal do Júri.",
       items: [
-        { id: "penal-1", icon: FileSearch, title: "Defesa em Inquéritos", description: "Representação legal em fase investigativa" },
-        { id: "penal-2", icon: Shield, title: "Audiências de Custódia", description: "Garantia de direitos em audiências de prisão" },
-        { id: "penal-3", icon: Users, title: "Tribunal do Júri", description: "Estratégia de defesa em julgamentos populares" },
-        { id: "penal-4", icon: Scale, title: "Recursos Superiores", description: "Apelações e recursos em tribunais superiores" },
-        { id: "penal-5", icon: Unlock, title: "Habeas Corpus", description: "Proteção de liberdade e direitos fundamentais" },
-        { id: "penal-6", icon: Banknote, title: "Crimes Financeiros", description: "Defesa em fraudes e crimes econômicos" },
-        { id: "penal-7", icon: Lock, title: "Execução Penal", description: "Atuação especializada na fase de cumprimento da pena: progressão de regime, livramento condicional, remição de pena, indulto e comutação, além de pedidos de prisão domiciliar e garantia de assistência médica." }
+        { id: "hom-1", icon: Gavel, title: "Homicídio Doloso e Culposo", description: "Defesa em todas as fases: investigação, pronúncia e julgamento em Plenário." },
+        { id: "hom-2", icon: HeartCrack, title: "Feminicídio", description: "Estratégia de defesa técnica e criteriosa em acusações de feminicídio." },
+        { id: "hom-3", icon: Users, title: "Tribunal do Júri", description: "Sustentação oral e tese de defesa construída para o julgamento popular." },
+        { id: "hom-4", icon: ShieldOff, title: "Latrocínio", description: "Defesa em casos de roubo seguido de morte, com análise técnica de autoria e materialidade." }
       ],
       buttons: [
         {
@@ -38,191 +33,169 @@ const Services = () => {
           icon: <AlertTriangle className="w-4 h-4 mr-2" />,
           emoji: "🚨",
           variant: "destructive",
-          message: "Olá! Tenho uma URGÊNCIA CRIMINAL (prisão/custódia) e preciso de atendimento imediato."
-        },
+          message: "Olá! Preciso de defesa URGENTE em um caso de Homicídio/Feminicídio."
+        }
+      ]
+    },
+    {
+      id: "estelionato",
+      icon: CreditCard,
+      title: "Estelionato e Fraudes",
+      description: "Defesa especializada em crimes contra o patrimônio praticados por meio de fraude, engano ou abuso de confiança.",
+      items: [
+        { id: "est-1", icon: FileWarning, title: "Estelionato (Art. 171 CP)", description: "Defesa em golpes envolvendo cheques, contratos, vendas e negócios fraudulentos." },
+        { id: "est-2", icon: Banknote, title: "Fraude em Financiamentos", description: "Atuação em acusações de fraude bancária e financiamentos irregulares." },
+        { id: "est-3", icon: FileText, title: "Apropriação Indébita", description: "Defesa em casos de apropriação de bens ou valores confiados." },
+        { id: "est-4", icon: ScrollText, title: "Cheque sem Fundos", description: "Defesa técnica em ações penais decorrentes de cheques sem provisão de fundos." }
+      ],
+      buttons: [
         {
           text: "Falar com Criminalista",
           icon: <MessageCircle className="w-4 h-4 mr-2" />,
           variant: "outline",
-          message: "Olá! Gostaria de falar com um especialista sobre um inquérito ou processo criminal."
+          message: "Olá! Estou sendo acusado(a) de Estelionato/Fraude e preciso de um advogado criminalista."
         }
       ]
     },
     {
-      id: "tributario",
-      icon: FileBarChart,
-      title: "Direito Tributário",
-      description: "Inteligência fiscal para reduzir custos e recuperar créditos. Defendemos seu patrimônio contra execuções fiscais abusivas.",
+      id: "cibercrimes",
+      icon: Smartphone,
+      title: "Golpes e Crimes Virtuais",
+      description: "Atuação especializada na nova fronteira do crime: fraudes digitais, invasões e golpes aplicados pela internet.",
       items: [
-        { id: "trib-1", icon: Calculator, title: "Planejamento Tributário", description: "Estratégias legais para otimizar carga fiscal" },
-        { id: "trib-2", icon: ShieldAlert, title: "Defesa em Execuções", description: "Representação em execuções fiscais" },
-        { id: "trib-3", icon: RefreshCcw, title: "Recuperação de Créditos", description: "Recuperação de impostos pagos indevidamente" },
-        { id: "trib-4", icon: XCircle, title: "Anulação de Multas", description: "Contestação de multas e penalidades fiscais" },
-        { id: "trib-5", icon: FileCheck, title: "Consultoria Fiscal", description: "Análise de obrigações e conformidade tributária" },
-        { id: "trib-6", icon: Gavel, title: "Litígios Administrativos", description: "Defesa em processos administrativos fiscais" },
-        { id: "trib-7", icon: Divide, title: "Parcelamento de Débitos", description: "Negociação de parcelamentos com Receita Federal" }
+        { id: "ciber-1", icon: AlertTriangle, title: "Golpe do Pix / Falso Sequestro", description: "Defesa em acusações envolvendo golpes financeiros aplicados via Pix, WhatsApp e redes sociais." },
+        { id: "ciber-2", icon: Lock, title: "Invasão de Dispositivo Informático", description: "Defesa técnica em crimes de invasão de sistemas e dispositivos (Art. 154-A CP)." },
+        { id: "ciber-3", icon: CreditCard, title: "Fraude em E-commerce", description: "Atuação em acusações relacionadas a vendas fraudulentas e clonagem de cartões." },
+        { id: "ciber-4", icon: MessageCircle, title: "Crimes contra a Honra na Internet", description: "Defesa em calúnia, difamação e injúria praticadas em redes sociais." }
       ],
       buttons: [
         {
-          text: "Execução Fiscal Urgente",
+          text: "Falar com Criminalista",
+          icon: <MessageCircle className="w-4 h-4 mr-2" />,
+          variant: "outline",
+          message: "Olá! Preciso de um advogado especialista em Crimes Virtuais/Golpes na Internet."
+        }
+      ]
+    },
+    {
+      id: "violencia-domestica",
+      icon: HeartCrack,
+      title: "Violência Doméstica",
+      description: "Defesa técnica e sigilosa em processos envolvendo a Lei Maria da Penha, com responsabilidade em casos sensíveis.",
+      items: [
+        { id: "vd-1", icon: Shield, title: "Medidas Protetivas", description: "Defesa e revisão de medidas protetivas de urgência." },
+        { id: "vd-2", icon: Activity, title: "Lesão Corporal no Âmbito Familiar", description: "Atuação técnica em acusações de violência física ou psicológica." },
+        { id: "vd-3", icon: AlertTriangle, title: "Ameaça", description: "Defesa em processos por ameaça no contexto familiar/doméstico." },
+        { id: "vd-4", icon: FileWarning, title: "Descumprimento de Medida Protetiva", description: "Defesa em casos de descumprimento de medidas protetivas." }
+      ],
+      buttons: [
+        {
+          text: "Falar com Criminalista",
+          icon: <MessageCircle className="w-4 h-4 mr-2" />,
+          variant: "outline",
+          message: "Olá! Preciso de orientação sobre um caso envolvendo a Lei Maria da Penha."
+        }
+      ]
+    },
+    {
+      id: "trafico",
+      icon: Pill,
+      title: "Tráfico de Entorpecentes",
+      description: "Defesa técnica em crimes previstos na Lei de Drogas, com análise minuciosa da prova e busca pela correta classificação jurídica do caso.",
+      items: [
+        { id: "traf-1", icon: Scale, title: "Tráfico de Drogas (Art. 33)", description: "Defesa técnica com análise das circunstâncias da prisão e da prova." },
+        { id: "traf-2", icon: Users, title: "Associação para o Tráfico", description: "Atuação em acusações de associação criminosa para o tráfico." },
+        { id: "traf-3", icon: FileSearch, title: "Porte para Uso Pessoal", description: "Busca pela correta desclassificação de tráfico para uso pessoal." },
+        { id: "traf-4", icon: Siren, title: "Prisão em Flagrante por Tráfico", description: "Atuação imediata em audiências de custódia relacionadas a entorpecentes." }
+      ],
+      buttons: [
+        {
+          text: "Atendimento Criminal Urgente",
+          icon: <AlertTriangle className="w-4 h-4 mr-2" />,
           emoji: "🚨",
           variant: "destructive",
-          message: "Olá! Recebi uma Execução Fiscal e preciso de defesa urgente."
+          message: "Olá! Tenho uma URGÊNCIA envolvendo prisão por Tráfico de Drogas."
         }
       ]
     },
     {
-      id: "previdenciario",
-      icon: HeartHandshake,
-      title: "Direito Previdenciário",
-      description: "Garanta o melhor benefício possível. Planejamento previdenciário minucioso para assegurar sua tranquilidade no futuro.",
+      id: "roubo-furto",
+      icon: ShieldOff,
+      title: "Roubo e Furto",
+      description: "Defesa em crimes contra o patrimônio praticados com ou sem violência, com estratégia voltada à individualização da conduta e da pena.",
       items: [
-        { id: "prev-1", icon: CalendarClock, title: "Planejamento de Aposentadoria", description: "Análise de melhor momento e modalidade de aposentadoria" },
-        { id: "prev-2", icon: TrendingUp, title: "Revisão de Benefícios", description: "Revisão de benefícios para aumentar valor mensal" },
-        { id: "prev-3", icon: Activity, title: "Auxílio-Doença/Invalidez", description: "Concessão e manutenção de benefícios por incapacidade" },
-        { id: "prev-4", icon: Accessibility, title: "BPC/LOAS", description: "Benefício de Prestação Continuada para idosos e deficientes" },
-        { id: "prev-5", icon: Briefcase, title: "Contribuinte Individual", description: "Orientação para autônomos e contribuintes individuais" },
-        { id: "prev-6", icon: HeartCrack, title: "Pensão por Morte", description: "Concessão e revisão de pensões para dependentes" },
-        { id: "prev-7", icon: Gavel, title: "Ação Judicial Previdenciária", description: "Ações contra INSS para concessão de benefícios" }
+        { id: "rf-1", icon: AlertTriangle, title: "Roubo (Art. 157)", description: "Defesa técnica em acusações de subtração de bens mediante violência ou grave ameaça." },
+        { id: "rf-2", icon: FileSearch, title: "Furto (Art. 155)", description: "Atuação em crimes de subtração patrimonial sem violência." },
+        { id: "rf-3", icon: FileText, title: "Receptação", description: "Defesa em acusações de aquisição ou ocultação de produto de crime." },
+        { id: "rf-4", icon: ScrollText, title: "Extorsão", description: "Defesa em casos de constrangimento para obtenção de vantagem indevida." }
       ],
       buttons: [
         {
-          text: "Falar com Previdenciário",
-          variant: "default",
-          message: "Olá! Gostaria de agendar um planejamento previdenciário ou revisar meu benefício."
+          text: "Falar com Criminalista",
+          icon: <MessageCircle className="w-4 h-4 mr-2" />,
+          variant: "outline",
+          message: "Olá! Preciso de defesa em um caso de Roubo/Furto."
         }
       ]
     },
     {
-      id: "consumidor",
-      icon: ShieldCheck,
-      title: "Direito do Consumidor",
-      description: "Não aceite abusos. Atuamos com firmeza contra bancos, seguradoras e empresas que desrespeitam seus direitos.",
-      items: [
-        { id: "cons-1", icon: Landmark, title: "Ações contra Bancos", description: "Cobrança de juros abusivos e tarifas indevidas" },
-        { id: "cons-2", icon: UserX, title: "Negativação Indevida", description: "Remoção de restrições de crédito indevidas" },
-        { id: "cons-3", icon: Stethoscope, title: "Planos de Saúde", description: "Cobertura de procedimentos negados indevidamente" },
-        { id: "cons-4", icon: Scale, title: "Danos Morais", description: "Indenização por danos morais e materiais" },
-        { id: "cons-5", icon: FileWarning, title: "Recall de Produtos", description: "Ações contra fabricantes por produtos defeituosos" },
-        { id: "cons-6", icon: FileText, title: "Contratos Abusivos", description: "Anulação de cláusulas abusivas em contratos" },
-        { id: "cons-7", icon: Undo2, title: "Direito de Arrependimento", description: "Exercício do direito de desistência em compras" }
-      ],
-      buttons: [
-        {
-          text: "Defender Meus Direitos",
-          variant: "default",
-          message: "Olá! Tive um problema de consumo (banco/negativação/plano de saúde) e quero defender meus direitos."
-        }
-      ]
-    },
-    {
-      id: "dividas",
-      icon: DollarSign,
-      title: "Renegociação de Dívidas",
-      description: "Recupere sua saúde financeira. Estratégias legais para reduzir juros abusivos e parcelar débitos de forma justa.",
-      items: [
-        { id: "div-1", icon: BadgePercent, title: "Renegociação de Crédito Consignado para Servidor Público", description: "Revisão e reestruturação completa de empréstimos consignados para servidores públicos (Federais, Estaduais e Municipais). Atuamos na redução de taxas de juros abusivas, alongamento de prazos e adequação da margem consignável, garantindo o equilíbrio financeiro sem comprometer a renda familiar." },
-        { id: "div-2", icon: Percent, title: "Redução de Juros", description: "Negociação e redução de juros abusivos" },
-        { id: "div-3", icon: Handshake, title: "Acordos Judiciais", description: "Celebração de acordos para parcelamento de dívidas" },
-        { id: "div-4", icon: ShieldCheck, title: "Proteção Patrimonial", description: "Estratégias para proteger patrimônio de credores" },
-        { id: "div-5", icon: RefreshCcw, title: "Refinanciamento de Dívidas", description: "Consolidação de múltiplas dívidas em uma" },
-        { id: "div-6", icon: ScrollText, title: "Defesa em Ações de Cobrança", description: "Contestação de ações de cobrança abusivas" },
-        { id: "div-7", icon: AlertOctagon, title: "Insolvência Civil", description: "Orientação em processos de insolvência" }
-      ],
-      buttons: [
-        {
-          text: "Resolver Dívidas Urgente",
-          emoji: "🚨",
-          variant: "destructive",
-          message: "Olá! Preciso de ajuda URGENTE para renegociar dívidas e proteger meu patrimônio."
-        }
-      ]
-    },
-    {
-      id: "autista",
-      icon: Heart,
-      title: "Direitos do Autista",
-      description: "Garantimos os direitos e benefícios para pessoas autistas. Atuamos na obtenção de diagnóstico, benefícios previdenciários, inclusão escolar e proteção contra discriminação.",
-      items: [
-        { id: "aut-1", icon: Activity, title: "Diagnóstico e Laudo", description: "Obtenção de diagnóstico formal e laudo médico para comprovação do autismo" },
-        { id: "aut-2", icon: Banknote, title: "Benefício de Prestação Continuada (BPC)", description: "Acesso ao BPC para pessoas autistas que atendem aos critérios de vulnerabilidade" },
-        { id: "aut-3", icon: School, title: "Inclusão Escolar", description: "Garantia de matrícula e permanência em escolas regulares com suporte necessário" },
-        { id: "aut-4", icon: GraduationCap, title: "Direito à Educação Especial", description: "Acesso a recursos e profissionais especializados na educação" },
-        { id: "aut-5", icon: ShieldAlert, title: "Proteção contra Discriminação", description: "Defesa contra discriminação em ambientes escolares, profissionais e sociais" },
-        { id: "aut-6", icon: CalendarClock, title: "Aposentadoria Especial", description: "Possibilidade de aposentadoria especial para autistas que trabalham" },
-        { id: "aut-7", icon: Briefcase, title: "Direitos Trabalhistas para Autistas", description: "Proteção e direitos especiais no ambiente de trabalho" }
-      ],
-      buttons: [
-        {
-          text: "Direitos do Autista",
-          variant: "default",
-          message: "Olá! Preciso de orientação sobre os direitos do autista e benefícios disponíveis."
-        }
-      ]
-    },
-    {
-      id: "concursos",
-      icon: Scale,
-      title: "Mandados de Segurança em Concursos Públicos",
-      description: "Protegemos seus direitos em concursos públicos. Atuamos contra erros em provas, recursos administrativos, impugnações e mandados de segurança para garantir sua aprovação.",
-      items: [
-        { id: "conc-1", icon: FileWarning, title: "Impugnação de Questões", description: "Contestação de questões com erros ou ambiguidades nas provas" },
-        { id: "conc-2", icon: Undo2, title: "Recursos Administrativos", description: "Interposição de recursos contra decisões da banca examinadora" },
-        { id: "conc-3", icon: ScrollText, title: "Mandado de Segurança", description: "Ação judicial para proteger direitos líquidos e certos em concursos" },
-        { id: "conc-4", icon: Shield, title: "Defesa contra Eliminação", description: "Defesa contra eliminação indevida do candidato no processo seletivo" },
-        { id: "conc-5", icon: FileCheck, title: "Revisão de Notas", description: "Revisão e contestação de notas e gabaritos oficiais" },
-        { id: "conc-6", icon: Accessibility, title: "Direitos de Candidatos PCD", description: "Proteção especial para candidatos com deficiência" },
-        { id: "conc-7", icon: Gavel, title: "Ações contra Banca Examinadora", description: "Ações judiciais contra erros e irregularidades da banca" }
-      ],
-      buttons: [
-        {
-          text: "Falar com Especialista em Concursos",
-          variant: "default",
-          message: "Olá! Tenho dúvidas sobre meu concurso público e gostaria de falar com um advogado especialista."
-        }
-      ]
-    },
-    {
-      id: "consultoria",
-      icon: Briefcase,
-      title: "Consultoria Jurídica",
-      description: "Orientação jurídica especializada para seus negócios e questões pessoais. Oferecemos consultoria preventiva para evitar problemas legais e maximizar oportunidades.",
-      items: [
-        { id: "consult-1", icon: Building2, title: "Consultoria Empresarial", description: "Orientação jurídica para constituição, gestão e operação de empresas" },
-        { id: "consult-2", icon: Home, title: "Consultoria Imobiliária", description: "Assessoria em transações imobiliárias, contratos e questões de propriedade" },
-        { id: "consult-3", icon: FileText, title: "Consultoria Contratual", description: "Análise, elaboração e revisão de contratos comerciais e civis" },
-        { id: "consult-4", icon: Users, title: "Consultoria Familiar", description: "Orientação em questões de direito de família, casamento e separação" },
-        { id: "consult-5", icon: HeartHandshake, title: "Consultoria Sucessória", description: "Planejamento sucessório e orientação em questões de herança" },
-        { id: "consult-6", icon: ShieldCheck, title: "Consultoria de Compliance", description: "Implementação de políticas de conformidade legal e regulatória" },
-        { id: "consult-7", icon: Shield, title: "Consultoria Preventiva", description: "Análise preventiva para evitar problemas legais futuros" }
-      ],
-      buttons: [
-        {
-          text: "Contratar Consultoria Jurídica",
-          variant: "default",
-          message: "Olá! Gostaria de contratar uma consultoria jurídica especializada."
-        }
-      ]
-    },
-    {
-      id: "traffic",
+      id: "transito",
       icon: Car,
-      title: "Multas, Apreensão e Direitos do Condutor",
-      description: "Defesa completa para motoristas. Anulamos multas, defendemos contra suspensão de CNH e recuperamos veículos apreendidos.",
+      title: "Crimes de Trânsito",
+      description: "Defesa especializada em crimes de trânsito, da fase policial ao julgamento, com foco técnico em cada etapa do processo.",
       items: [
-        { id: "traffic-1", icon: Car, title: "Seu veículo foi apreendido pelo Banco?", description: "Advogado especialista com atuação rápida para suspender apreensões, contestar abusos no contrato de financiamento e recuperar seu veículo. Muitos bancos cometem erros na cobrança, nos juros ou na notificação. E é aí que entramos com a Defesa para anular a Apreensão do seu veículo." },
-        { id: "traffic-2", icon: Shield, title: "Suspensão/Cassação CNH/PPD", description: "Buscamos erros capazes de anular a suspensão/cassação de CNH/PPD, com análises aprofundadas e qualificadas de todo o processo. Nada passa pelo radar da DS Trânsito!" },
-        { id: "traffic-3", icon: FileText, title: "MULTAS", description: "Recorremos das suas multas, buscando não apenas a anulação, mas também, a adequada gestão de pontos, de modo a evitar o processo de suspensão da CNH." },
-        { id: "traffic-4", icon: Wine, title: "Bafômetro", description: "Multa de lei seca tem solução! Trabalhamos não apenas no processo da multa, para evitar seu pagamento, mas também, no processo de suspensão de CNH, para evitar a perda do direito de dirigir" },
-        { id: "traffic-5", icon: UserCheck, title: "Veículo vendido e não transferido", description: "Pressionamos o comprador a proceder com a transferência do carro e de todas as multas cometidas após a venda, sob pena de responder às autoridades competentes." },
-        { id: "traffic-6", icon: Wheelchair, title: "Aquisição de carro para PCD", description: "Auxiliamos em todo o processo para aquisição de veículos com descontos de até 30%, desde o agendamento para junta médica do DETRAN, até a escolha do veículo ideal para o perfil do cliente." },
-        { id: "traffic-7", icon: Heart, title: "Seguro DPVAT", description: "Garantimos o recebimento máximo de acordo com o seu caso, buscando um complemento, caso você já tenha recebido antes." }
+        { id: "tra-1", icon: Car, title: "Homicídio no Trânsito", description: "Defesa em acusações de homicídio culposo ou doloso na direção de veículo." },
+        { id: "tra-2", icon: Wine, title: "Embriaguez ao Volante", description: "Defesa técnica em flagrantes e processos por embriaguez ao volante." },
+        { id: "tra-3", icon: Activity, title: "Lesão Corporal no Trânsito", description: "Atuação em acusações de lesão corporal decorrente de acidente." },
+        { id: "tra-4", icon: AlertTriangle, title: "Fuga do Local do Acidente", description: "Defesa em casos de omissão de socorro e evasão do local." }
       ],
       buttons: [
         {
-          text: "Resolver Problema de Trânsito",
-          variant: "default",
-          message: "Olá! Quero resolver meu problema de Suspenção e Cassação de CNH, Recurso de Multa, aquisição de Carro PCD, Lei Seca, Veículo vendido e não transferido ou Seguro DPVAT."
+          text: "Falar com Criminalista",
+          icon: <MessageCircle className="w-4 h-4 mr-2" />,
+          variant: "outline",
+          message: "Olá! Preciso de defesa em um caso de Crime de Trânsito."
+        }
+      ]
+    },
+    {
+      id: "flagrante",
+      icon: Siren,
+      title: "Prisão em Flagrante e Custódia",
+      description: "Atendimento de urgência 24h. Atuação imediata para garantir seus direitos desde o primeiro minuto da prisão, em qualquer lugar do Brasil.",
+      items: [
+        { id: "fla-1", icon: Gavel, title: "Audiência de Custódia", description: "Atuação imediata para garantir direitos e buscar a soltura em audiência de custódia." },
+        { id: "fla-2", icon: Unlock, title: "Relaxamento de Prisão", description: "Pedido de relaxamento em casos de prisão ilegal." },
+        { id: "fla-3", icon: FileCheck, title: "Liberdade Provisória", description: "Requerimento de liberdade provisória com ou sem fiança." },
+        { id: "fla-4", icon: Lock, title: "Prisão Preventiva", description: "Defesa técnica contra decretação ou manutenção de prisão preventiva." }
+      ],
+      buttons: [
+        {
+          text: "Atendimento Criminal Urgente",
+          icon: <AlertTriangle className="w-4 h-4 mr-2" />,
+          emoji: "🚨",
+          variant: "destructive",
+          message: "Olá! Tenho uma URGÊNCIA CRIMINAL (prisão em flagrante/custódia) e preciso de atendimento imediato."
+        }
+      ]
+    },
+    {
+      id: "habeas-corpus",
+      icon: Unlock,
+      title: "Habeas Corpus e Recursos",
+      description: "Atuação em tribunais superiores para reverter decisões injustas e garantir a liberdade e os direitos do acusado em todo o território nacional.",
+      items: [
+        { id: "hc-1", icon: Unlock, title: "Habeas Corpus", description: "Impetração de HC em tribunais para proteção da liberdade de locomoção." },
+        { id: "hc-2", icon: ScrollText, title: "Apelação Criminal", description: "Recursos contra sentenças condenatórias em 1º grau." },
+        { id: "hc-3", icon: Scale, title: "Recursos aos Tribunais Superiores", description: "Atuação em STJ e STF em recursos especiais e extraordinários." },
+        { id: "hc-4", icon: FileCheck, title: "Revisão Criminal", description: "Ação para revisão de condenações já transitadas em julgado." }
+      ],
+      buttons: [
+        {
+          text: "Falar com Criminalista",
+          icon: <MessageCircle className="w-4 h-4 mr-2" />,
+          variant: "outline",
+          message: "Olá! Preciso de orientação sobre Habeas Corpus ou recurso em processo criminal."
         }
       ]
     }
@@ -238,22 +211,14 @@ const Services = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 lg:mb-16"
         >
-          <span className="text-amber-400 font-bold text-xs sm:text-sm uppercase tracking-wider">Expertise Jurídica</span>
+          <span className="text-amber-400 font-bold text-xs sm:text-sm uppercase tracking-wider">Advocacia Criminal • Atuação Nacional</span>
           <h2 className="text-3xl lg:text-5xl font-bold text-white mt-3 mb-4">
-            Soluções para Problemas <span className="bg-gradient-to-r from-blue-400 to-amber-400 bg-clip-text text-transparent">Complexos</span>
+            Qual é o seu <span className="bg-gradient-to-r from-blue-400 to-amber-400 bg-clip-text text-transparent">Problema Criminal?</span>
           </h2>
           <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
-            Não atuamos em tudo. Atuamos onde somos especialistas. Conheça nossas áreas de alta performance.
+            Somos 100% especializados em Direito Penal. Identifique sua situação abaixo e fale agora com um advogado criminalista, em qualquer estado do Brasil.
           </p>
 
-          <Button 
-            onClick={() => setIsProcessModalOpen(true)}
-            variant="outline"
-            className="mt-6 border-blue-500/50 text-blue-400 hover:text-white hover:bg-blue-600/20"
-          >
-            <PlusCircle className="w-4 h-4 mr-2" />
-            Adicionar Processo (Análise IA)
-          </Button>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -362,10 +327,6 @@ const Services = () => {
         </div>
       </div>
 
-      <ProcessUploadModal 
-        isOpen={isProcessModalOpen}
-        onClose={() => setIsProcessModalOpen(false)}
-      />
     </section>
   );
 };

@@ -1,54 +1,64 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { useClient } from '@/context/ClientContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Lock, ShieldCheck, ArrowLeft, AlertCircle } from 'lucide-react';
-import { formatCPF, cleanCPF } from '@/lib/cpfUtils';
+import { Lock, ShieldCheck, ArrowLeft, AlertCircle, Eye, EyeOff, User } from 'lucide-react';
+
+const DIREITANDO_API = 'https://direitando.com.br/api/cliente-portal/login';
+const PORTAL_URL = 'https://direitando.com.br/PortalCliente';
 
 const ClientLogin = () => {
-  const [cpf, setCpf] = useState('');
+  const [login, setLogin] = useState('');
+  const [senha, setSenha] = useState('');
+  const [mostrarSenha, setMostrarSenha] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
-  const [lastSearchedCPF, setLastSearchedCPF] = useState('');
-  
-  const { loginWithCPF } = useClient();
-  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    // Apply visual mask only
-    const formatted = formatCPF(e.target.value);
-    setCpf(formatted);
-    setError('');
-  };
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validate length of numbers only
-    const cleanValue = cleanCPF(cpf);
-    
-    if (cleanValue.length !== 11) {
-      setError("CPF incompleto. Digite os 11 números.");
+    setError('');
+
+    const loginTrimmed = login.trim();
+    if (!loginTrimmed) {
+      setError('Informe seu e-mail ou CPF.');
       return;
     }
-    
-    setLastSearchedCPF(cleanValue);
+    if (!senha) {
+      setError('Informe sua senha.');
+      return;
+    }
+
     setIsSubmitting(true);
-    
     try {
-      // Calls the generic login context function which queries the DB for any matching CPF
-      const success = await loginWithCPF(cleanValue);
-      if (success) {
-        navigate('/client-dashboard');
-      } else {
-        // More friendly error for clients
-        setError(`CPF ${cleanValue} não encontrado.`);
+      const res = await fetch(DIREITANDO_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ login: loginTrimmed, senha }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        setError(data.message || 'E-mail/CPF ou senha incorretos.');
+        return;
       }
+
+      if (!data.token || !data.cliente) {
+        setError('Erro ao autenticar. Tente novamente.');
+        return;
+      }
+
+      // Montar objeto cliente sem campos pesados (base64 de logo, etc.)
+      const { logo_escritorio, foto_titular, avatar_url, ...clienteLight } = data.cliente;
+      const clienteEncoded = encodeURIComponent(JSON.stringify(clienteLight));
+      window.location.href = `${PORTAL_URL}?token=${encodeURIComponent(data.token)}&cliente=${clienteEncoded}`;
+
     } catch (err) {
       console.error(err);
-      setError(err.message || "Não foi possível realizar o login. Tente novamente.");
+      setError('Não foi possível conectar ao servidor. Tente novamente.');
     } finally {
       setIsSubmitting(false);
     }
@@ -61,13 +71,13 @@ const ClientLogin = () => {
       <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-3xl" />
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md relative z-10"
       >
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           className="mb-8 text-slate-400 hover:text-white"
           onClick={() => navigate('/')}
         >
@@ -80,35 +90,63 @@ const ClientLogin = () => {
               <ShieldCheck className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-2xl font-bold text-white mb-2">Área do Cliente</h1>
-            <p className="text-slate-400 text-sm">Acesse seus processos e informações financeiras com segurança.</p>
+            <p className="text-slate-400 text-sm">Acesse seus processos e informações com segurança.</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Campo login */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300 ml-1">CPF</label>
+              <label className="text-sm font-medium text-slate-300 ml-1">E-mail ou CPF</label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                <Input
+                  type="text"
+                  placeholder="seu@email.com ou 000.000.000-00"
+                  value={login}
+                  onChange={(e) => { setLogin(e.target.value); setError(''); }}
+                  className="pl-10 bg-slate-950 border-slate-800 text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-blue-500/20 h-12"
+                  required
+                  autoComplete="username"
+                />
+              </div>
+            </div>
+
+            {/* Campo senha */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300 ml-1">Senha</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <Input
-                  type="text"
-                  placeholder="000.000.000-00"
-                  value={cpf}
-                  onChange={handleChange}
-                  maxLength={14}
-                  className={`pl-10 bg-slate-950 border-slate-800 text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-blue-500/20 h-12 text-lg tracking-wider font-mono ${error ? 'border-red-500/50' : ''}`}
+                  type={mostrarSenha ? 'text' : 'password'}
+                  placeholder="••••••••"
+                  value={senha}
+                  onChange={(e) => { setSenha(e.target.value); setError(''); }}
+                  className="pl-10 pr-10 bg-slate-950 border-slate-800 text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-blue-500/20 h-12"
                   required
+                  autoComplete="current-password"
                 />
+                <button
+                  type="button"
+                  onClick={() => setMostrarSenha(!mostrarSenha)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+                  tabIndex={-1}
+                >
+                  {mostrarSenha ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
               </div>
-              {error && (
-                <div className="bg-red-950/30 border border-red-900/50 rounded p-3 mt-2">
-                   <div className="text-red-400 text-xs flex items-center gap-1 font-bold">
-                      <AlertCircle className="w-3 h-3" /> {error}
-                   </div>
-                </div>
-              )}
             </div>
 
-            <Button 
-              type="submit" 
+            {/* Erro */}
+            {error && (
+              <div className="bg-red-950/30 border border-red-900/50 rounded p-3">
+                <div className="text-red-400 text-xs flex items-center gap-1 font-bold">
+                  <AlertCircle className="w-3 h-3 flex-shrink-0" /> {error}
+                </div>
+              </div>
+            )}
+
+            <Button
+              type="submit"
               className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-lg shadow-lg shadow-blue-900/20"
               disabled={isSubmitting}
             >
@@ -121,12 +159,12 @@ const ClientLogin = () => {
                 'Acessar Painel'
               )}
             </Button>
-            
+
             <div className="text-center">
               <p className="text-xs text-slate-500">
-                Acesso restrito. Seus dados são protegidos por criptografia de ponta a ponta.
+                Acesso restrito. Seus dados são protegidos por criptografia.
                 <br />
-                <span className="text-slate-600 mt-2 block">Seu CPF deve estar previamente cadastrado pelo escritório.</span>
+                <span className="text-slate-600 mt-2 block">Suas credenciais são fornecidas pelo escritório.</span>
               </p>
             </div>
           </form>

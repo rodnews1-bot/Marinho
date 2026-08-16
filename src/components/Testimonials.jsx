@@ -8,43 +8,43 @@ const Testimonials = () => {
   const testimonials = [
     {
       name: "Maria S.",
-      role: "Cliente - Direito do Consumidor",
+      role: "Cliente - Violência Doméstica",
       content: "Fiquei impressionada com a clareza e transparência do Dr. Rodrigo. Desde a primeira consulta, entendi os riscos e as possibilidades do meu caso. O atendimento foi impecável e me senti segura durante todo o processo.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1629896295208-66aed41e62a2?auto=format&fit=crop&w=150&q=80"
     },
     {
       name: "João P.",
-      role: "Cliente - Direito Penal",
+      role: "Cliente - Tribunal do Júri",
       content: "Profissionalismo de alto nível. A equipe demonstrou um conhecimento técnico profundo e elaborou uma estratégia de defesa extremamente detalhada. A dedicação e o respeito com que fui tratado fizeram toda a diferença.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1688484185622-3cd9878ebe73?auto=format&fit=crop&w=150&q=80"
     },
     {
-      name: "Global Solutions Ltda.",
-      role: "Cliente - Direito Tributário",
-      content: "A consultoria tributária foi um divisor de águas para nossa empresa. A análise minuciosa permitiu identificar oportunidades legais de economia que desconhecíamos. Serviço técnico e extremamente competente.",
+      name: "Ricardo T.",
+      role: "Cliente - Estelionato e Fraudes",
+      content: "A análise minuciosa da acusação permitiu construir uma defesa técnica sólida desde o início. Fui orientado com clareza sobre cada etapa do processo. Serviço técnico e extremamente competente.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1485531865381-286666aa80a9?auto=format&fit=crop&w=150&q=80"
     },
     {
       name: "Carlos O.",
-      role: "Cliente - Renegociação",
-      content: "Agradeço pela paciência e pela condução ética da minha renegociação. O escritório buscou incansavelmente uma solução justa, sempre me mantendo informado de cada passo. Recomendo pela seriedade.",
+      role: "Cliente - Golpes e Crimes Virtuais",
+      content: "Agradeço pela paciência e pela condução ética do meu caso envolvendo um golpe online. O escritório buscou incansavelmente uma solução justa, sempre me mantendo informado de cada passo. Recomendo pela seriedade.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1574594862606-48cdbcfc24cb?auto=format&fit=crop&w=150&q=80"
     },
     {
       name: "Patricia A.",
-      role: "Cliente - Previdenciário",
-      content: "O planejamento previdenciário realizado pelo Dr. Rodrigo me deu uma nova perspectiva. Foi tudo explicado com muita didática e competência. Sinto que meu futuro está sendo cuidado por mãos experientes.",
+      role: "Cliente - Prisão em Flagrante",
+      content: "O atendimento foi imediato em um momento de extrema urgência. A atuação rápida e segura na audiência de custódia me deu uma nova perspectiva. Sinto que fui cuidada por mãos experientes.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1680049118554-b2e40e2eef36?auto=format&fit=crop&w=150&q=80"
     },
     {
       name: "Roberto F.",
-      role: "Cliente - Consultoria",
-      content: "Excelente assessoria. A postura preventiva e orientadora do escritório me evitou diversas dores de cabeça contratuais. Advocacia séria e comprometida com a ética.",
+      role: "Cliente - Tráfico de Entorpecentes",
+      content: "Excelente assessoria técnica. A postura criteriosa e a análise aprofundada da prova fizeram toda a diferença na condução do meu caso. Advocacia séria e comprometida com a ética.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1690562568374-ad1612f1318e?auto=format&fit=crop&w=150&q=80"
     }

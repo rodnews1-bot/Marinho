@@ -7,9 +7,11 @@ import { AdminProvider } from '@/context/AdminContext';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import About from '@/components/About';
+import VideoGallery from '@/components/VideoGallery';
 import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import ConsultaProcessos from '@/components/ConsultaProcessos';
 import ClientLogin from '@/components/ClientLogin';
 import ClientDashboard from '@/components/ClientDashboard';
 import ProcessDetailPage from '@/components/ProcessDetailPage';
@@ -22,7 +24,9 @@ const LandingPage = () => (
   <main className="flex-1 w-full flex flex-col">
     <Hero />
     <Services />
+    <ConsultaProcessos />
     <About />
+    <VideoGallery />
     <Testimonials />
     <Contact />
     <Footer />
@@ -30,8 +34,8 @@ const LandingPage = () => (
 );
 
 function App() {
-  const metaTitle = "MARINHO ADVOCACIA | Advocacia de Elite";
-  const metaDesc = "Escritório de advocacia full-service focado em entregar resultados jurídicos de alta performance com ética, transparência e combatividade. Especialistas em Penal, Tributário e Previdenciário.";
+  const metaTitle = "MARINHO ADVOCACIA CRIMINAL | Advogado Criminalista - Atuação Nacional";
+  const metaDesc = "Escritório 100% especializado em Direito Penal, com atuação em todo o território nacional. Defesa técnica em Homicídio, Estelionato, Golpes e Crimes Virtuais, Violência Doméstica, Tráfico de Entorpecentes e prisão em flagrante. Atendimento 24h.";
   const metaImage = "https://horizons-cdn.hostinger.com/fc1a8f30-56b6-4386-b03a-0cb5e72f383b/96cf0b8bdd18b2092b65cbc915d1e49d.png";
 
   return (
