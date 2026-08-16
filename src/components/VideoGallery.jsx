@@ -45,7 +45,7 @@ const VideoGallery = () => {
             publishedAt: item.snippet.publishedAt,
           }))
           .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-          .slice(0, 10);
+          .slice(0, 12);
 
         setVideos(parsed);
         setStatus('ready');
