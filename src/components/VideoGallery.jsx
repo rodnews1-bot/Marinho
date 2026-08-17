@@ -31,6 +31,7 @@ const VideoGallery = () => {
         const data = await response.json();
 
         const seenIds = new Set();
+        const seenTitles = new Set();
         const parsed = (data.items || [])
           .filter((item) => {
             const title = item.snippet?.title;
@@ -50,6 +51,12 @@ const VideoGallery = () => {
             publishedAt: item.snippet.publishedAt,
           }))
           .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+          .filter((video) => {
+            const normalizedTitle = video.title.trim().toLowerCase();
+            if (seenTitles.has(normalizedTitle)) return false;
+            seenTitles.add(normalizedTitle);
+            return true;
+          })
           .slice(0, 12);
 
         setVideos(parsed);
