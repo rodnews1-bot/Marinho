@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = "5565992823630";
+export const WHATSAPP_NUMBER = "5565992078977";
 
 /**
  * URL Encodes a message for WhatsApp

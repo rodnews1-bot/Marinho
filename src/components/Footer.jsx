@@ -4,7 +4,7 @@ import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, Clock } from 'lucide
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const scheduleLink = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ05LQBaGSMp19S1g1pQyxfnE5wQBnvoKBO2XmzKCqbKNYm0hIJ0oz1ySTgDHDzlwjBSq1NEKUe7";
-  const phoneNumber = "5565992823630";
+  const phoneNumber = "5565992078977";
   const defaultMessage = "Olá! Vim pelo site do Marinho Advocacia e Assessoria e gostaria de falar com um advogado sobre meu caso.";
   
   const handleWhatsApp = () => {
@@ -133,7 +133,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <span className="block text-xs text-slate-500">WhatsApp / Tel</span>
-                  <span className="text-white hover:text-green-400 transition-colors cursor-pointer" onClick={handleWhatsApp}>(65) 99282-3630</span>
+                  <span className="text-white hover:text-green-400 transition-colors cursor-pointer" onClick={handleWhatsApp}>(65) 99207-8977</span>
                 </div>
               </li>
               <li className="flex items-start gap-3 text-slate-400 text-sm">

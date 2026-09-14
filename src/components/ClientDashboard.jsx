@@ -19,7 +19,7 @@ const ClientDashboard = () => {
   };
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/5565992823630', '_blank');
+    window.open('https://wa.me/5565992078977', '_blank');
   };
 
   const handleSchedule = () => {

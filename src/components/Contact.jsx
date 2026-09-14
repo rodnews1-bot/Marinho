@@ -21,7 +21,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Telefone / WhatsApp",
-      content: "(65) 99282-3630",
+      content: "(65) 99207-8977",
       action: handleWhatsApp
     },
     {
