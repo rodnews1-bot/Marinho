@@ -20,7 +20,7 @@ const AdminLogin = () => {
     // Simulate network delay
     await new Promise(resolve => setTimeout(resolve, 800));
     
-    const success = login(email, password);
+    const success = await login(email, password);
     setIsSubmitting(false);
 
     if (success) {
@@ -64,7 +64,7 @@ const AdminLogin = () => {
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <Input
                   type="email"
-                  placeholder="contato@rodrigomarinho.com.br"
+                  placeholder="contato@direitando.com.br"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10 bg-slate-950 border-slate-800 text-white placeholder:text-slate-600 focus:border-indigo-500 focus:ring-indigo-500/20 h-12"

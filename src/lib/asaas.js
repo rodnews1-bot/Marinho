@@ -5,7 +5,7 @@ import axios from 'axios';
 // For this standalone environment, we use the key directly but implement a fallback mock system
 // to prevent CORS errors from breaking the UI demo.
 
-const API_KEY = '$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OmU4MjYxMDZkLTk0MTctNDNkNy04YmYyLWJiZmU2Y2M4N2Y5YTo6JGFhY2hfNWM3MTE4ZGUtZmMyMi00MjE0LTkzMGItOTExOWU1MGY5OGNj';
+const API_KEY = ''; // sem chave no navegador: cobranças reais passam pelo Direitando
 const BASE_URL = 'https://www.asaas.com/api/v3';
 
 // Helper to determine if we should mock
